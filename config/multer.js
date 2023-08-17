@@ -11,7 +11,7 @@ const configuracionMulter = {
   },
   storage: multer.diskStorage({
     destination: (req, file, next) => {
-      next(null, path.join(__dirname, '..', 'public/uploads/grupos/'))
+      next(null, path.join(__dirname, '..', 'uploads/'))
     },
     filename: (req, file, next) => {
       const extension = file.mimetype.split('/')[1]
