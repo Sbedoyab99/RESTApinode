@@ -36,6 +36,7 @@ const mostrarCliente = async (req, res, next) => {
   }
 }
 
+// Actualiza un cliente por id
 const actualizarCliente = async (req, res, next) => {
   try {
     const cliente = await Clientes.findByIdAndUpdate(req.params.idCliente, req.body, { new: true })
@@ -46,9 +47,21 @@ const actualizarCliente = async (req, res, next) => {
   }
 }
 
+// Elimina un cliente por id
+const eliminarCliente = async (req, res, next) => {
+  try {
+    await Clientes.findByIdAndDelete(req.params.idCliente)
+    res.json({ mensaje: 'El cliente se ha eliminado' })
+  } catch (error) {
+    res.json({ mensaje: 'Ese cliente no existe' })
+    next()
+  }
+}
+
 export {
   nuevoCliente,
   mostrarClientes,
   mostrarCliente,
-  actualizarCliente
+  actualizarCliente,
+  eliminarCliente
 }
