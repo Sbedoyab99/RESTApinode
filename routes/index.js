@@ -1,6 +1,7 @@
 import express from 'express'
 import { nuevoCliente, mostrarClientes, mostrarCliente, actualizarCliente, eliminarCliente } from '../Controllers/clienteController.js'
 import { nuevoProducto, subirArchivo, mostrarProductos, mostrarProducto, actualizarProducto, eliminarProducto } from '../Controllers/productosController.js'
+import { nuevoPedido, mostrarPedidos, mostrarPedido, actualizarPedido, eliminarPedido } from '../Controllers/pedidosController.js'
 
 const router = express.Router()
 
@@ -27,5 +28,17 @@ router.get('/productos/:idProducto', mostrarProducto)
 router.put('/productos/:idProducto', subirArchivo, actualizarProducto)
 // Eliminar Producto
 router.delete('/productos/:idProducto', eliminarProducto)
+
+/** API Pedidos */
+// Nuevo Pedido
+router.post('/pedidos', nuevoPedido)
+// Listar todos los pedidos
+router.get('/pedidos', mostrarPedidos)
+// Mostrar un pedido por su id
+router.get('/pedidos/:idPedido', mostrarPedido)
+// Actualizar pedido
+router.put('/pedidos/:idPedido', actualizarPedido)
+// Eliminar Pedido
+router.delete('/pedidos/:idPedido', eliminarPedido)
 
 export default router
