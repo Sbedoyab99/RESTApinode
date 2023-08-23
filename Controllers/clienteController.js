@@ -8,9 +8,14 @@ const nuevoCliente = async (req, res, next) => {
     await cliente.save()
     res.json({ mensaje: 'Se agrego un nuevo cliente' })
   } catch (error) {
-    // si hay error, console.log y next
-    console.log(error)
-    next()
+    let mensaje = ''
+    if (error.code === 11000) {
+      mensaje = 'Ya existe un usuario registrado con ese Email.'
+      return res.status(400).send(mensaje)
+    } else {
+      mensaje = error
+      return res.status(500).send('Algo Fallo')
+    }
   }
 }
 
@@ -42,8 +47,14 @@ const actualizarCliente = async (req, res, next) => {
     const cliente = await Clientes.findByIdAndUpdate(req.params.idCliente, req.body, { new: true })
     res.json({ mensaje: 'Se modifico la informacion', cliente })
   } catch (error) {
-    console.log(error)
-    next()
+    let mensaje = ''
+    if (error.code === 11000) {
+      mensaje = 'Ya existe un usuario registrado con ese Email.'
+      return res.status(400).send(mensaje)
+    } else {
+      mensaje = error
+      return res.status(500).send('Algo Fallo')
+    }
   }
 }
 

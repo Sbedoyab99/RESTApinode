@@ -2,6 +2,7 @@ import express from 'express'
 import routes from './routes/index.js'
 import mongoose from 'mongoose'
 import bodyParser from 'body-parser'
+import cors from 'cors'
 
 // Conectar mongoose
 mongoose.Promise = global.Promise
@@ -16,6 +17,9 @@ const app = express()
 // habilitar body parser
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
+
+// Habilitar Cors
+app.use(cors())
 
 // Crear rutas
 app.use('/', routes)
