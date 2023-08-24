@@ -24,6 +24,8 @@ app.use(cors())
 // Crear rutas
 app.use('/', routes)
 
+// Archivos Estaticos
+app.use(express.static('uploads'))
 
 // Iniciar servidor
 const port = process.env.PORT || 3000
